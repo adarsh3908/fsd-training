@@ -1,0 +1,9 @@
+Welcome to the Node.js HTTP Server!
+
+This is a simple server that reads and displays this message.
+
+Server Status: Running
+Date: February 5, 2026
+Port: 3000
+
+Feel free to edit this file to change the message displayed on the server.

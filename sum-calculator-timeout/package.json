@@ -1,0 +1,9 @@
+{
+  "name": "sum-calculator-timeout",
+  "version": "1.0.0",
+  "description": "Calculate sum of 1 to 100000 with setTimeout delays",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

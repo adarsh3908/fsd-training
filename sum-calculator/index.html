@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sum Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 500px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 18px;
+      background-color: #667eea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #764ba2;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .result p {
+      color: #555;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .status {
+      color: #27ae60;
+      font-size: 16px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .loading {
+      display: none;
+      color: #667eea;
+      margin-top: 20px;
+    }
+
+    .loading.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sum Calculator</h1>
+    <p>Click the button to calculate the sum of numbers from 1 to 100,000</p>
+    
+    <button id="calculateBtn" onclick="calculateSum()">Calculate Sum</button>
+
+    <div class="loading" id="loading">
+      <p>Processing...</p>
+    </div>
+
+    <div class="result" id="result">
+      <h2>Result:</h2>
+      <p id="sumValue"></p>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <script>
+    async function calculateSum() {
+      const btn = document.getElementById('calculateBtn');
+      const loading = document.getElementById('loading');
+      const result = document.getElementById('result');
+
+      btn.disabled = true;
+      loading.classList.add('show');
+      result.classList.remove('show');
+
+      try {
+        const response = await fetch('/api/calculate-sum', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+
+        document.getElementById('sumValue').textContent = `Sum: ${data.sum}`;
+        document.getElementById('status').textContent = data.status;
+        result.classList.add('show');
+      } catch (error) {
+        document.getElementById('sumValue').textContent = `Error: ${error.message}`;
+        result.classList.add('show');
+      } finally {
+        btn.disabled = false;
+        loading.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>

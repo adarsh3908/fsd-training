@@ -1,0 +1,9 @@
+{
+  "name": "file-server-with-css",
+  "version": "1.0.0",
+  "description": "Simple file server with HTML and CSS support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

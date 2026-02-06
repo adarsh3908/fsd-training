@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Server with CSS</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📁 File Server with CSS Support</h1>
+    <p>This server serves HTML, CSS, JS, and other static files without errors.</p>
+    
+    <div class="features">
+      <h2>Features:</h2>
+      <ul>
+        <li>✅ Serves index.html on root path (/)</li>
+        <li>✅ CSS files are served properly (styles.css)</li>
+        <li>✅ Supports multiple file types (HTML, CSS, JS, JSON, Images)</li>
+        <li>✅ Returns 404 for files that don't exist</li>
+        <li>✅ Returns 500 on internal server errors</li>
+      </ul>
+    </div>
+
+    <div class="test-section">
+      <h2>Test Links:</h2>
+      <ul>
+        <li><a href="/">🏠 Home (index.html)</a></li>
+        <li><a href="/styles.css">🎨 Styles (styles.css)</a></li>
+        <li><a href="/nonexistent.html">❌ Non-existent file (404 error)</a></li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>Difference from file-server:</h3>
+      <p><strong>file-server:</strong> Only serves HTML, CSS returns 404 error</p>
+      <p><strong>file-server-with-css:</strong> Serves HTML + CSS without errors ✅</p>
+    </div>
+  </div>
+</body>
+</html>

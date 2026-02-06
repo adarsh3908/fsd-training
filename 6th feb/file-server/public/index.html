@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple File Server</title>
+</head>
+<body>
+  <h1>File Server - Plain HTML Only</h1>
+  <p>This is a simple HTML page without any CSS styling.</p>
+  
+  <h2>Features:</h2>
+  <ul>
+    <li>Only serves index.html on root path (/)</li>
+    <li>No CSS files are served (styles.css will show 404 error)</li>
+    <li>All other requests return 404 Not Found</li>
+    <li>500 error can occur if there's a server issue</li>
+  </ul>
+
+  <h2>Test It:</h2>
+  <ul>
+    <li>Root: <strong>http://localhost:3004/</strong> ✅ Works</li>
+    <li>CSS: <strong>http://localhost:3004/styles.css</strong> ❌ 404 Error</li>
+    <li>Any other path: <strong>http://localhost:3004/anything</strong> ❌ 404 Error</li>
+  </ul>
+
+  <hr>
+  <p>Open browser console to see requests for missing files!</p>
+</body>
+</html>

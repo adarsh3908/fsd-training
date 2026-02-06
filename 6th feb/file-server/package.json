@@ -1,0 +1,9 @@
+{
+  "name": "file-server",
+  "version": "1.0.0",
+  "description": "Static file server with proper error handling (404 and 500)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

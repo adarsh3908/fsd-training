@@ -1,0 +1,15 @@
+{
+  "name": "book-api",
+  "version": "1.0.0",
+  "description": "REST API to check if a book exists",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["rest", "api", "book"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

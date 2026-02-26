@@ -1,9 +1,0 @@
-{
-  "name": "file-server-with-css",
-  "version": "1.0.0",
-  "description": "Static file server that serves HTML and CSS without errors",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  }
-}

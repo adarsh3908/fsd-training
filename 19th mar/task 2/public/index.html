@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form - React</title>
+  <link rel="stylesheet" href="/style.css">
+  <!-- React and ReactDOM from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function LoginForm() {
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [loading, setLoading] = useState(false);
+      const [message, setMessage] = useState('');
+      const [isSuccess, setIsSuccess] = useState(false);
+      const [user, setUser] = useState(null);
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setMessage('');
+
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            setIsSuccess(true);
+            setMessage(data.message);
+            setUser(data.user);
+            setEmail('');
+            setPassword('');
+          } else {
+            setIsSuccess(false);
+            setMessage(data.message);
+          }
+        } catch (error) {
+          setIsSuccess(false);
+          setMessage('Error connecting to server');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      if (user) {
+        return (
+          <div className="container">
+            <div className="success-container">
+              <h1>Welcome, {user.name}! 👋</h1>
+              <p>Email: {user.email}</p>
+              <button onClick={() => {
+                setUser(null);
+                setMessage('');
+                setIsSuccess(false);
+              }} className="logout-btn">
+                Logout
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="container">
+          <div className="login-box">
+            <h1>Login Form</h1>
+            
+            {message && (
+              <div className={`message ${isSuccess ? 'success' : 'error'}`}>
+                {message}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Enter your password"
+                />
+              </div>
+
+              <button type="submit" disabled={loading} className="submit-btn">
+                {loading ? 'Logging in...' : 'Login'}
+              </button>
+            </form>
+
+            <div className="demo-info">
+              <p><strong>Demo Credentials:</strong></p>
+              <p>Email: <code>user@example.com</code></p>
+              <p>Password: <code>password123</code></p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<LoginForm />, document.getElementById('root'));
+  </script>
+</body>
+</html>

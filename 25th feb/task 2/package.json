@@ -1,0 +1,15 @@
+{
+  "name": "book-user-api",
+  "version": "1.0.0",
+  "description": "REST API for Books and Users with Postman testing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["rest", "api", "book", "user"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

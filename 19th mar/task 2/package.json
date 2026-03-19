@@ -1,0 +1,12 @@
+{
+  "name": "task-2-login-form",
+  "version": "1.0.0",
+  "description": "Login form with React using Node.js server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["react", "login", "node"],
+  "author": "",
+  "license": "ISC"
+}
